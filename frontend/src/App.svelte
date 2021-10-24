@@ -28,7 +28,7 @@
 <main>
   <h2>Ethereum BlockChain Voting System</h2>
   {#if window.ethereum}
-    <p>Metamaks connected</p>
+    <p>Meta Mask connected</p>
   {/if}
   {#if window.ethereum && !metamaskConnected}
     <button on:click={onClickConnectWallet()}>Conenct to wallet</button>
