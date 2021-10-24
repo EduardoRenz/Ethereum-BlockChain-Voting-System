@@ -1,8 +1,9 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 contract Voting {
   uint256 public totalVotes = 0;
-  uint256 lastCandidateId = 0;
+  uint256 public lastCandidateId = 0;
 
   // Creates a Candidate structure like interface
   struct Candidate {

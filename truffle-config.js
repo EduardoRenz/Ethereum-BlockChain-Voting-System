@@ -1,4 +1,5 @@
 module.exports = {
+  contracts_build_directory: "./frontend/src/contracts",
   networks: {
     // Useful for testing. The `development` name is special - truffle uses it by default
     development: {
