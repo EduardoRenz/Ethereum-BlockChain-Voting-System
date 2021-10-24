@@ -1,9 +1,14 @@
 <script>
   import { Web3 } from "svelte-web3";
-  import Candidates from "../contracts/Voting.json";
   import { onMount } from "svelte";
+  import Candidates from "../contracts/Voting.json";
+  import Candidate from "./Candidate.svelte";
 
   let web3 = new Web3(window.ethereum);
+
+  onMount(async () => {
+    number_of_candidates = await getCandidates();
+  });
 
   async function getCandidates() {
     const networkId = await web3.eth.net.getId();
@@ -12,42 +17,29 @@
       Candidates.abi,
       deployedNetwork && deployedNetwork.address
     );
-    console.log(contract.methods);
     return contract.methods.lastCandidateId().call();
   }
 
-  async function getCandidate(number) {
-    const networkId = await web3.eth.net.getId();
-    const deployedNetwork = Candidates.networks[networkId];
-    const contract = new web3.eth.Contract(
-      Candidates.abi,
-      deployedNetwork && deployedNetwork.address
-    );
-    return contract.methods.candidates(number).call();
-  }
+  $: number_of_candidates = "loading";
 </script>
 
-{#await getCandidates()}
-  <h1>Loading</h1>
-{:then number_of_candidates}
+<header>
   <h3>Number of Candidates : {number_of_candidates}</h3>
+</header>
 
+<section>
   {#each { length: number_of_candidates } as _, i}
-    <div>
-      <h3>Candidate {i + 1}</h3>
-
-      {#await getCandidate(i + 1) then candidate}
-        <h4>Name : {candidate.name}</h4>
-        <h4>Votes : {candidate.votes}</h4>
-      {:catch}
-        <h4>Candidate not found</h4>
-      {/await}
-    </div>
+    <Candidate id={i + 1} />
   {/each}
-{/await}
+</section>
 
 <style>
-  h3 {
-    color: white;
+  section {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 600px;
   }
 </style>
