@@ -12,7 +12,7 @@
 - Create contracts in contracts folder
 - Run `truffle compile ` to compile contracts
 - Create a new migration in migrations folder
-- Run `truffle migrate`
+- Run `truffle migrate` or `truffle migrate --reset` to reset to a new deployiment if needed
 - Can see log with `truffle console` and `voting = await Voting.deployed()` to get a copy of this contract
 - `voting.totalVotes()` to get current total votes
 
