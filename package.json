@@ -1,0 +1,20 @@
+{
+  "name": "blockchain-voting-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "dudarenz@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "truffle": "^5.0.0",
+    "truffle-contract": "^3.0.0",
+    "nodemon": "^1.18.4"
+  }
+}
